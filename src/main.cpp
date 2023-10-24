@@ -1,11 +1,9 @@
 #include <pybind11/pybind11.h>
+#include "math_sphbes.h"
+using namespace pybind11::literals;
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
-
-int add(int i, int j) {
-    return i + j;
-}
 
 namespace py = pybind11;
 
@@ -14,26 +12,18 @@ PYBIND11_MODULE(_core, m) {
         Pybind11 example plugin
         -----------------------
 
-        .. currentmodule:: scikit_build_example
+        .. currentmodule:: two_center_integral
 
         .. autosummary::
            :toctree: _generate
 
-           add
-           subtract
+           sphbesj
+           dsphbesj
     )pbdoc";
 
-    m.def("add", &add, R"pbdoc(
-        Add two numbers
+    m.def("sphbesj", &sphbesj, "l"_a, "x"_a);
+    m.def("dsphbesj", &dsphbesj, "l"_a, "x"_a);
 
-        Some other explanation about the add function.
-    )pbdoc");
-
-    m.def("subtract", [](int i, int j) { return i - j; }, R"pbdoc(
-        Subtract two numbers
-
-        Some other explanation about the subtract function.
-    )pbdoc");
 
 #ifdef VERSION_INFO
     m.attr("__version__") = MACRO_STRINGIFY(VERSION_INFO);

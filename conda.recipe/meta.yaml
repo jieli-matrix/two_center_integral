@@ -1,5 +1,5 @@
 package:
-  name: scikit_build_example
+  name: two_center_integral
   version: 0.0.1
 
 source:
@@ -26,7 +26,7 @@ requirements:
 
 test:
   imports:
-    - scikit_build_example
+    - two_center_integral
   requires:
     - pytest
   source_files:
@@ -35,5 +35,5 @@ test:
     - pytest tests
 
 about:
-  summary: An example project built with pybind11 and scikit-build.
+  summary: An example two-center-integral project built with pybind11 and scikit-build.
   license_file: LICENSE
