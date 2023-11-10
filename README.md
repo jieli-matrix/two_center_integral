@@ -47,9 +47,10 @@ Test call
 ---------
 
 ```python
-import two_center_integral
+import two_center_integral as m
 
-two_center_integral.sphbesj(1, 0)
+chi = m.NumericalRadial()
+assert chi.l == -1
 ```
 
 [`cibuildwheel`]:          https://cibuildwheel.readthedocs.io
