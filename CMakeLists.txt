@@ -9,8 +9,9 @@ find_package(Python REQUIRED COMPONENTS Interpreter Development.Module)
 find_package(pybind11 CONFIG REQUIRED)
 
 list(APPEND _sources 
-    src/math_sphbes.h 
-    src/math_sphbes.cpp 
+    src/constants.h 
+    src/numerical_radial.h
+    src/numerical_radial.cpp 
     src/main.cpp)
 python_add_library(_core MODULE ${_sources} WITH_SOABI)
 target_link_libraries(_core PRIVATE pybind11::headers)
