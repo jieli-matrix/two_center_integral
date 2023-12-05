@@ -10,8 +10,8 @@ find_package(pybind11 CONFIG REQUIRED)
 
 list(APPEND _sources 
     src/MyClass.h
-    src/MyClass.cpp 
-    src/MyClassWrapper.h 
+    src/MyClass.cpp
+    src/MyClassWrapper.h
     src/main.cpp)
 python_add_library(_core MODULE ${_sources} WITH_SOABI)
 target_link_libraries(_core PRIVATE pybind11::headers)

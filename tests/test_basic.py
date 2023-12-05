@@ -1,16 +1,15 @@
 from __future__ import annotations
-
+import pytest
 import two_center_integral as m
+np = pytest.importorskip("numpy")
 
 
 def test_version():
     assert m.__version__ == "0.0.1"
 
 
-def test_sphbesj():
-    assert m.sphbesj(0, 0) == 1.0
-    assert m.sphbesj(1, 0) == 0.0
+def test_setData():
+    a = m.MyClassWrapper()
+    a.setData(np.arange(10).astype(np.int32), 10)
+    assert a.displayData(9) == 9
 
-
-def test_dsphbesj():
-    assert m.dsphbesj(0, 0) == -0.0

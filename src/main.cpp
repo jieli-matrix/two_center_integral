@@ -14,10 +14,14 @@ using overload_cast_ = pybind11::detail::overload_cast_impl<Args...>;
 namespace py = pybind11;
 
 PYBIND11_MODULE(_core, m) {
-    py::class_<MyClassWrapper>(m, "MyClassWrapper")
+    py::class_<MyClass>(m, "MyClass")
         .def(py::init<>())
-        .def("setData", &MyClassWrapper::setData_py)
-        .def("displayData", &MyClassWrapper::displayData_py);
+        .def("displayData", overload_cast_<int>()(&MyClass::displayData, py::const_));
+    py::class_<MyClassWrapper, MyClass>(m, "MyClassWrapper")
+        .def(py::init<>())
+        .def("setData", &MyClassWrapper::setData)
+        .def("displayData", overload_cast_<>()(&MyClassWrapper::displayData))
+        .def("displayData", overload_cast_<int>()(&MyClassWrapper::displayData, py::const_));
         //TODO: copy constructor
         //.def("setData", &MyClassWrapper::setData_py);
         //.def("displayData", overload_cast_<int>()(&MyClass::displayData, py::const_));
