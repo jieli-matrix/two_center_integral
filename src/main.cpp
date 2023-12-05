@@ -1,6 +1,12 @@
 #include <pybind11/pybind11.h>
-#include "math_sphbes.h"
+#include <pybind11/numpy.h>
+#include <pybind11/stl.h>
+#include "MyClass.h"
+#include "MyClassWrapper.h"
 using namespace pybind11::literals;
+template <typename... Args>
+using overload_cast_ = pybind11::detail::overload_cast_impl<Args...>;
+
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
@@ -8,21 +14,15 @@ using namespace pybind11::literals;
 namespace py = pybind11;
 
 PYBIND11_MODULE(_core, m) {
-    m.doc() = R"pbdoc(
-        Pybind11 example plugin
-        -----------------------
+    py::class_<MyClassWrapper>(m, "MyClassWrapper")
+        .def(py::init<>())
+        .def("setData", &MyClassWrapper::setData_py)
+        .def("displayData", &MyClassWrapper::displayData_py);
+        //TODO: copy constructor
+        //.def("setData", &MyClassWrapper::setData_py);
+        //.def("displayData", overload_cast_<int>()(&MyClass::displayData, py::const_));
+//.def("displayData", overload_cast_<>()(&MyClassWrapper::displayData_py));
 
-        .. currentmodule:: two_center_integral
-
-        .. autosummary::
-           :toctree: _generate
-
-           sphbesj
-           dsphbesj
-    )pbdoc";
-
-    m.def("sphbesj", &sphbesj, "l"_a, "x"_a);
-    m.def("dsphbesj", &dsphbesj, "l"_a, "x"_a);
 
 
 #ifdef VERSION_INFO
