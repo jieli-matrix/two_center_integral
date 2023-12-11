@@ -1,11 +1,15 @@
 #include <pybind11/pybind11.h>
-#include "math_sphbes.h"
+#include "testm.h"
+#include<pybind11/stl.h>
+#include <pybind11/stl_bind.h>
+#include <vector>
 using namespace pybind11::literals;
 
 #define STRINGIFY(x) #x
 #define MACRO_STRINGIFY(x) STRINGIFY(x)
 
 namespace py = pybind11;
+PYBIND11_MAKE_OPAQUE(std::vector<double>);
 
 PYBIND11_MODULE(_core, m) {
     m.doc() = R"pbdoc(
@@ -20,9 +24,8 @@ PYBIND11_MODULE(_core, m) {
            sphbesj
            dsphbesj
     )pbdoc";
-
-    m.def("sphbesj", &sphbesj, "l"_a, "x"_a);
-    m.def("dsphbesj", &dsphbesj, "l"_a, "x"_a);
+    py::bind_vector<std::vector<double>>(m, "VectorDouble");
+    m.def("test_modify", &test_modify, "A function which modifies a vector<double> by reference");
 
 
 #ifdef VERSION_INFO

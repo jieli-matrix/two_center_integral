@@ -47,9 +47,11 @@ Test call
 ---------
 
 ```python
-import two_center_integral
-
-two_center_integral.sphbesj(1, 0)
+>>> import two_center_integral as m
+>>> v = m.VectorDouble([1.0,2.0])
+>>> m.test_modify(v)
+>>> v
+VectorDouble[2, 2]
 ```
 
 [`cibuildwheel`]:          https://cibuildwheel.readthedocs.io
