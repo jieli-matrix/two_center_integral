@@ -54,4 +54,6 @@ Test call
 VectorDouble[2, 2]
 ```
 
+Reference: https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html
+
 [`cibuildwheel`]:          https://cibuildwheel.readthedocs.io
