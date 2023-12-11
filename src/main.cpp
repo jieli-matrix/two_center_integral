@@ -25,7 +25,7 @@ PYBIND11_MODULE(_core, m) {
            dsphbesj
     )pbdoc";
     py::bind_vector<std::vector<double>>(m, "VectorDouble");
-    m.def("test_modify", &test_modify, "A function which modifies a vector<double> by reference");
+    m.def("test_modify", [](double e, std::vector<double>& v){test_modify(e, v); return std::make_tuple(e, v);});
 
 
 #ifdef VERSION_INFO
