@@ -47,9 +47,18 @@ Test call
 ---------
 
 ```python
-import two_center_integral
+import two_center_integral as m 
+import numpy as np
 
-two_center_integral.sphbesj(1, 0)
+# set parameters
+n = 10
+r = np.arange(n) / 10.0
+q = 0.1
+l = 1
+jl = np.zeros(n).astype(np.float64)
+# calculate the values of l-th order spherical Bessel function at q*r[ir]
+m.sphbesj(n, r, q, l, jl)
+
 ```
 
 [`cibuildwheel`]:          https://cibuildwheel.readthedocs.io
